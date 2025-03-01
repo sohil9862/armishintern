@@ -1,39 +1,44 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import WelcomeScreen from './(tabs)/welcome';
+import DashboardScreen from './(tabs)/dashboard';
+import SignupScreen from './(tabs)/signup';
+import LoginScreen from './(tabs)/login';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+type RootStackParamList = {
+  Welcome: undefined;
+  Dashboard: undefined;
+  Signup: undefined;
+  Login: undefined;
+};
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+const AppLayout: React.FC = () => {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack.Navigator initialRouteName="Welcome">
+      <Stack.Screen 
+        name="Welcome" 
+        component={WelcomeScreen} 
+        options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="Dashboard" 
+        component={DashboardScreen} 
+        options={{ title: 'Dashboard' }} 
+      />
+      <Stack.Screen 
+        name="Signup" 
+        component={SignupScreen} 
+        options={{ title: 'Sign Up' }} 
+      />
+      <Stack.Screen 
+        name="Login" 
+        component={LoginScreen} 
+        options={{ title: 'Login' }} 
+      />
+    </Stack.Navigator>
   );
-}
+};
+
+export default AppLayout;
