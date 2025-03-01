@@ -1,15 +1,15 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WelcomeScreen from './(tabs)/welcome';
-import DashboardScreen from './(tabs)/dashboard';
-import SignupScreen from './(tabs)/signup';
-import LoginScreen from './(tabs)/login';
+import DashboardScreen from './(tabs)/Dashboard';
+import PhoneNumberScreen from './(tabs)/PhoneNumberScreen';  
+import ProfileScreen from './(tabs)/ProfileScreen';  
 
 type RootStackParamList = {
   Welcome: undefined;
   Dashboard: undefined;
-  Signup: undefined;
-  Login: undefined;
+  PhoneNumber: undefined;  // Add PhoneNumberScreen
+  Profile: undefined;  // Add ProfileScreen
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,14 +28,14 @@ const AppLayout: React.FC = () => {
         options={{ title: 'Dashboard' }} 
       />
       <Stack.Screen 
-        name="Signup" 
-        component={SignupScreen} 
-        options={{ title: 'Sign Up' }} 
+        name="PhoneNumber" 
+        component={PhoneNumberScreen} 
+        options={{ title: 'Phone Number' }}  // Title for PhoneNumberScreen
       />
       <Stack.Screen 
-        name="Login" 
-        component={LoginScreen} 
-        options={{ title: 'Login' }} 
+        name="Profile" 
+        component={ProfileScreen} 
+        options={{ title: 'Profile' }}  // Title for ProfileScreen
       />
     </Stack.Navigator>
   );

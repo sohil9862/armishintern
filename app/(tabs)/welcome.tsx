@@ -3,8 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 type RootStackParamList = {
-    Signup: undefined;
-    Login: undefined;
     Dashboard: undefined;
   };
 

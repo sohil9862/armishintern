@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   PhoneNumber: undefined;
@@ -73,7 +72,7 @@ const DashboardScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.header}>
           <Text style={styles.helloText}>Hello, Guest</Text>
           <TextInput style={styles.searchBar} placeholder="Search" />
@@ -119,8 +118,9 @@ const DashboardScreen: React.FC = () => {
             ))}
           </View>
         </View>
+      </ScrollView>
 
-        {/* Bottom Navigation Bar */}
+      {/* Bottom Navigation Bar */}
       <View style={styles.bottomNav}>
         {['Home', 'Search', 'Bookings', 'Profile'].map((item, index) => (
           <TouchableOpacity
@@ -145,8 +145,6 @@ const DashboardScreen: React.FC = () => {
           </TouchableOpacity>
         ))}
       </View>
-
-      </ScrollView>
     </View>
   );
 };
@@ -155,6 +153,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    justifyContent: "flex-end",  // Ensures the bottom navigation is at the bottom of the screen
+  },
+  scrollView: {
+    flexGrow: 1,  // Allows the ScrollView to take the available space
+    paddingBottom: 60,  // Prevents content from being hidden under the fixed navbar
   },
   header: {
     flexDirection: "row",
