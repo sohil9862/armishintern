@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type RootStackParamList = {
   PhoneNumber: undefined;
@@ -8,10 +9,17 @@ type RootStackParamList = {
   Search: undefined;
   Bookings: undefined;
   Profile: undefined;
+  SpecialServicesScreen: undefined;
 };
+
+type NavigationProps = StackNavigationProp<RootStackParamList, 'Dashboard'>;
 
 const DashboardScreen: React.FC = () => {
   const navigation = useNavigation();
+
+  // State for location
+  const [selectedLocation, setSelectedLocation] = useState('Kathmandu');
+  const [showLocationOptions, setShowLocationOptions] = useState(false);
 
   // Expanded services
   const services = [
@@ -51,6 +59,15 @@ const DashboardScreen: React.FC = () => {
     { title: "Beauty & Spa", icon: "💅" },
   ];
 
+  // Special Service (Gas Installation with Discount)
+  const specialService = {
+    title: "Gas Installation",
+    discount: "30% OFF",
+    price: "Rs. 5000",
+    discountedPrice: "Rs. 3500",
+    image: require("../../assets/images/laptop.jpg"),
+  };
+
   // Team members data
   const teamMembers = [
     {
@@ -73,19 +90,71 @@ const DashboardScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
+        {/* Header with Location in the center */}
         <View style={styles.header}>
-          <Text style={styles.helloText}>Hello, Guest</Text>
+          {/* Profile Picture (Top Right) */}
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image source={require("../../assets/images/laptop.jpg")} style={styles.profileImage} />
+          </TouchableOpacity>
+
+          {/* Location Text in the Center */}
+          <View style={styles.locationHeader}>
+            <Text style={styles.locationText}>{selectedLocation}</Text>
+          </View>
+
+          <TouchableOpacity onPress={() => setShowLocationOptions(!showLocationOptions)}>
+            <Text style={styles.locationChangeText}>Change Location</Text>
+          </TouchableOpacity>
+        </View>
+
+        {showLocationOptions && (
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.locationOptions}>
+            {['Kathmandu', 'Pokhara', 'Chitwan'].map((location, index) => (
+              <TouchableOpacity key={index} onPress={() => {
+                setSelectedLocation(location);
+                setShowLocationOptions(false); // Close options after selection
+              }} style={styles.locationOption}>
+                <Text style={[styles.locationOptionText, selectedLocation === location && styles.selectedLocation]}>
+                  {location}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        )}
+
+        {/* Header with Search */}
+        <View style={styles.searchContainer}>
           <TextInput style={styles.searchBar} placeholder="Search" />
+        </View>
+
+        {/* 🔥 Special Service Section 🔥 */}
+        
+        <View style={styles.specialService}>
+          <Image source={specialService.image} style={styles.specialImage} />
+          <View style={styles.specialDetails}>
+          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
+          <Text style={styles.seeAll}>See All</Text>
+          </TouchableOpacity>
+            <Text style={styles.specialTitle}>{specialService.title}</Text>
+            <Text style={styles.specialDiscount}>{specialService.discount}</Text>
+            <Text style={styles.specialPrice}>
+              <Text style={styles.originalPrice}>{specialService.price}</Text> → {specialService.discountedPrice}
+            </Text>
+          </View>
         </View>
 
         {/* Categories Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Categories</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
+          <Text style={styles.seeAll}>See All</Text>
+          </TouchableOpacity>
           <View style={styles.categories}>
             {categories.map((category, index) => (
               <TouchableOpacity key={index} style={styles.categoryCard}>
                 <Text style={styles.categoryIcon}>{category.icon}</Text>
                 <Text style={styles.categoryText}>{category.title}</Text>
+
               </TouchableOpacity>
             ))}
           </View>
@@ -94,6 +163,9 @@ const DashboardScreen: React.FC = () => {
         {/* Popular Services Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Popular Services</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
+          <Text style={styles.seeAll}>See All</Text>
+          </TouchableOpacity>
           <View style={styles.popularServices}>
             {services.map((service, index) => (
               <TouchableOpacity key={index} style={styles.popularCard}>
@@ -108,6 +180,9 @@ const DashboardScreen: React.FC = () => {
         {/* Team Members Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Meet Our Team</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
+          <Text style={styles.seeAll}>See All</Text>
+          </TouchableOpacity>
           <View style={styles.teamMembers}>
             {teamMembers.map((member, index) => (
               <View key={index} style={styles.teamCard}>
@@ -153,28 +228,108 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "flex-end",  // Ensures the bottom navigation is at the bottom of the screen
+    justifyContent: "flex-end",
   },
   scrollView: {
-    flexGrow: 1,  // Allows the ScrollView to take the available space
-    paddingBottom: 60,  // Prevents content from being hidden under the fixed navbar
+    flexGrow: 1,
+    paddingBottom: 60,
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
     backgroundColor: "#f8f9fa",
   },
-  helloText: {
-    fontSize: 20,
-    fontWeight: "bold",
+  profileImage: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  locationHeader: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  locationText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  locationChangeText: {
+    fontSize: 16,
+    color: '#007bff',
+  },
+  locationOptions: {
+    flexDirection: 'row',
+  },
+  locationOption: {
+    marginLeft: 15,
+  },
+  locationOptionText: {
+    fontSize: 16,
+    color: "#007bff",
+  },
+  selectedLocation: {
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  searchContainer: {
+    padding: 10,
+    backgroundColor: "#f8f9fa",
   },
   searchBar: {
-    marginTop: 15,
+    marginTop: 5,
     padding: 10,
     borderWidth: 1,
     borderColor: "#ddd",
     borderRadius: 8,
+  },
+  seeAll: { 
+    fontSize: 14,              // Increased font size for better readability
+    color: "blue",
+    alignSelf: 'flex-end',
+    textDecorationLine: "underline",  // Make it look like a clickable link
+  },
+  
+  specialService: {
+    flexDirection: 'row',        // Align items in a row
+    alignItems: 'center',        // Center the items vertically
+    backgroundColor: 'lightblue',
+    padding: 15,
+    borderRadius: 10,
+    margin: 15,
+    justifyContent: 'space-between',  // Space between the image and 'See All' button
+  },
+  
+  specialImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
+    marginRight: 10,            // Space between image and the text area
+  },
+  
+  specialDetails: {
+    flex: 1,                   // Allow the details section to take remaining space
+    justifyContent: 'center',   // Center content vertically
+  },
+  
+  specialTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  
+  specialDiscount: {
+    fontSize: 14,
+    color: 'green',
+  },
+  
+  specialPrice: {
+    fontSize: 14,
+    color: 'red',
+  },
+  
+  originalPrice: {
+    textDecorationLine: 'line-through',
+    marginRight: 5,
   },
   section: {
     marginVertical: 10,
@@ -241,7 +396,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: "#f8f9fa",
     borderRadius: 8,
-    padding: 10,
+    padding: 15,
   },
   teamImage: {
     width: 80,

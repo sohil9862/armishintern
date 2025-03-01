@@ -4,12 +4,14 @@ import WelcomeScreen from './(tabs)/welcome';
 import DashboardScreen from './(tabs)/Dashboard';
 import PhoneNumberScreen from './(tabs)/PhoneNumberScreen';  
 import ProfileScreen from './(tabs)/ProfileScreen';  
+import SpecialServicesScreen from './(tabs)/SpecialServicesScreen';
 
 type RootStackParamList = {
   Welcome: undefined;
   Dashboard: undefined;
-  PhoneNumber: undefined;  // Add PhoneNumberScreen
-  Profile: undefined;  // Add ProfileScreen
+  PhoneNumber: undefined;  
+  Profile: undefined; 
+  SpecialServicesScreen: undefined; 
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -36,6 +38,11 @@ const AppLayout: React.FC = () => {
         name="Profile" 
         component={ProfileScreen} 
         options={{ title: 'Profile' }}  // Title for ProfileScreen
+      />
+      <Stack.Screen 
+        name="SpecialServicesScreen" 
+        component={SpecialServicesScreen} 
+        options={{ title: 'SpecialServicesScreen' }}  
       />
     </Stack.Navigator>
   );
