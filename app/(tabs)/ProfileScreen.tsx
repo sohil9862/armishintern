@@ -16,6 +16,7 @@ type RootStackParamList = {
   Search: undefined;
   Bookings: undefined;
   ProfileScreen: undefined;
+  SearchScreen: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -103,9 +104,9 @@ const ProfileScreen: React.FC = () => {
               if (item === 'Home') {
                 navigation.navigate('Dashboard');
               } else if (item === 'Search') {
-                navigation.navigate('Search');
+                navigation.navigate('SearchScreen');
               } else if (item === 'Bookings') {
-                navigation.navigate('Bookings');
+                navigation.navigate('BookingScreen');
               } else if (item === 'Profile') {
                 navigation.navigate('PhoneNumber');
               }

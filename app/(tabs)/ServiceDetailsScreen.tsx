@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput, Modal, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity, Modal, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-// Define the navigation type
-type RootStackParamList = {
-  ServiceDetailsScreen: { service: { title: string; price: string; description: string; image: any } };
-  Dashboard: undefined;
-  SpecialServicesScreen: undefined;
+// Define the props type for the service details
+type ServiceDetailsScreenProps = {
+  route: {
+    params: {
+      service: {
+        title: string;
+        price: string;
+        description: string;
+        image: any;
+      };
+    };
+  };
 };
 
-// Navigation prop type
-type SpecialServicesScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SpecialServicesScreen'>;
-
-const SpecialServicesScreen: React.FC = () => {
-  const navigation = useNavigation<SpecialServicesScreenNavigationProp>();
-
-  // Services data
-  const services = [
-    { title: 'Laptop Servicing', price: 'Rs. 2000', description: 'Expert laptop servicing.', image: require('../../assets/images/laptop.jpg') },
-    { title: 'Plumbing', price: 'Rs. 1500', description: 'Professional plumbing services.', image: require('../../assets/images/laptop.jpg') },
-    { title: 'Car Servicing', price: 'Rs. 3000', description: 'Comprehensive car servicing.', image: require('../../assets/images/laptop.jpg') },
-    { title: 'House Cleaning', price: 'Rs. 1200', description: 'Deep cleaning for your home.', image: require('../../assets/images/laptop.jpg') },
-    { title: 'Electrical Repair', price: 'Rs. 1800', description: 'Expert electrical services.', image: require('../../assets/images/laptop.jpg') },
-    { title: 'Carpentry', price: 'Rs. 2200', description: 'Custom furniture and repairs.', image: require('../../assets/images/laptop.jpg') },
-  ];
-
-  // State for booking modal and form data
+const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) => {
+  const { service } = route.params; // Extract the service data passed from the previous screen
+  const navigation = useNavigation();
+  
+  // State for the booking form modal
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [formData, setFormData] = useState({
     date: '',
@@ -39,34 +33,30 @@ const SpecialServicesScreen: React.FC = () => {
 
   // Handle form submission
   const handleBookingSubmit = () => {
-    console.log(formData);  // Here you can send the form data to the backend
-    setIsModalVisible(false); // Close the modal after submitting
+    // You can add your booking submission logic here
+    console.log(formData);
+    setIsModalVisible(false); // Close modal after submitting
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('Dashboard')}>
+    <ScrollView style={styles.container}>
+      {/* Back Button */}
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
-      <Text style={styles.header}>Services</Text>
-      <ScrollView>
-        {services.map((service, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.serviceCard}
-            onPress={() => navigation.navigate('ServiceDetailsScreen', { service })}
-          >
-            <Image source={service.image} style={styles.image} />
-            <Text style={styles.title}>{service.title}</Text>
-            <Text style={styles.price}>{service.price}</Text>
+      
+      {/* Service Details */}
+      <Image source={service.image} style={styles.image} />
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title}>{service.title}</Text>
+        <Text style={styles.price}>{service.price}</Text>
+        <Text style={styles.description}>{service.description}</Text>
+      </View>
 
-            {/* Booking Button for each service */}
-            <TouchableOpacity style={styles.bookingButton} onPress={() => setIsModalVisible(true)}>
-              <Text style={styles.bookingButtonText}>Book Now</Text>
-            </TouchableOpacity>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      {/* Booking Button */}
+      <TouchableOpacity style={styles.bookingButton} onPress={() => setIsModalVisible(true)}>
+        <Text style={styles.bookingButtonText}>Book Now</Text>
+      </TouchableOpacity>
 
       {/* Booking Form Modal */}
       <Modal visible={isModalVisible} animationType="slide" transparent={true}>
@@ -117,14 +107,14 @@ const SpecialServicesScreen: React.FC = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#fff',
     padding: 15,
   },
   backButton: {
@@ -133,42 +123,32 @@ const styles = StyleSheet.create({
     left: 15,
     zIndex: 1,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 15,
-  },
-  serviceCard: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    marginBottom: 10,
-    padding: 15,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
   image: {
     width: '100%',
-    height: 150,
+    height: 200,
     borderRadius: 10,
-    marginBottom: 10,
+  },
+  detailsContainer: {
+    marginTop: 15,
   },
   title: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   price: {
-    fontSize: 14,
+    fontSize: 20,
     color: '#007bff',
+    marginVertical: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: '#555',
   },
   bookingButton: {
     backgroundColor: '#007bff',
     padding: 15,
     borderRadius: 10,
-    marginTop: 10,
+    marginTop: 20,
     alignItems: 'center',
   },
   bookingButtonText: {
@@ -210,4 +190,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SpecialServicesScreen;
+export default ServiceDetailsScreen;

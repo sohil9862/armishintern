@@ -5,6 +5,14 @@ import DashboardScreen from './(tabs)/Dashboard';
 import PhoneNumberScreen from './(tabs)/PhoneNumberScreen';  
 import ProfileScreen from './(tabs)/ProfileScreen';  
 import SpecialServicesScreen from './(tabs)/SpecialServicesScreen';
+import AllCategoriesScreen from './(tabs)/AllCategoriesScreen';
+import TeamMemberScreen from './(tabs)/TeamMemberScreen';
+import TeamMemberDetailScreen from './(tabs)/TeamMemberDetailScreen';
+import ServiceDetailsScreen from './(tabs)/ServiceDetailsScreen';
+import CategoryDetailScreen from './(tabs)/CategoryDetailScreen';
+import SearchScreen from './(tabs)/SearchScreen';
+import BookingScreen from './(tabs)/BookingScreen';
+
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -12,6 +20,13 @@ type RootStackParamList = {
   PhoneNumber: undefined;  
   Profile: undefined; 
   SpecialServicesScreen: undefined; 
+  AllCategoriesScreen: undefined;
+  TeamMemberScreen: undefined;
+  TeamMemberDetailScreen: undefined;
+  ServiceDetailsScreen: undefined;
+  CategoryDetailScreen: undefined;
+  SearchScreen: undefined;
+  BookingScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,17 +47,52 @@ const AppLayout: React.FC = () => {
       <Stack.Screen 
         name="PhoneNumber" 
         component={PhoneNumberScreen} 
-        options={{ title: 'Phone Number' }}  // Title for PhoneNumberScreen
+        options={{ title: 'Phone Number' }}  
       />
       <Stack.Screen 
         name="Profile" 
         component={ProfileScreen} 
-        options={{ title: 'Profile' }}  // Title for ProfileScreen
+        options={{ title: 'Profile' }}  
       />
       <Stack.Screen 
         name="SpecialServicesScreen" 
         component={SpecialServicesScreen} 
         options={{ title: 'SpecialServicesScreen' }}  
+      />
+      <Stack.Screen 
+        name="AllCategoriesScreen" 
+        component={AllCategoriesScreen} 
+        options={{ title: 'AllCategoriesScreen' }}  
+      />
+      <Stack.Screen 
+        name="TeamMemberScreen" 
+        component={TeamMemberScreen} 
+        options={{ title: 'TeamMemberScreen' }}  
+      />
+      <Stack.Screen 
+        name="TeamMemberDetailScreen" 
+        component={TeamMemberDetailScreen} 
+        options={{ title: 'TeamMemberDetailScreen' }}  
+      />
+      <Stack.Screen 
+        name="ServiceDetailsScreen" 
+        component={ServiceDetailsScreen} 
+        options={{ title: 'ServiceDetailsScreen' }}  
+      />
+      <Stack.Screen 
+        name="CategoryDetailScreen" 
+        component={CategoryDetailScreen} 
+        options={{ title: 'CategoryDetailScreen' }}  
+      />
+      <Stack.Screen 
+        name="SearchScreen" 
+        component={SearchScreen} 
+        options={{ title: 'SearchScreen' }}  
+      />
+      <Stack.Screen 
+        name="BookingScreen" 
+        component={BookingScreen} 
+        options={{ title: 'BookingScreen' }}  
       />
     </Stack.Navigator>
   );

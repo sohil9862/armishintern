@@ -10,6 +10,8 @@ type RootStackParamList = {
   Bookings: undefined;
   Profile: undefined;
   SpecialServicesScreen: undefined;
+  SearchScreen: undefined;
+  TeamMemberDetail: { name: string; role: string; image: any; rating: number; description: string };
 };
 
 type NavigationProps = StackNavigationProp<RootStackParamList, 'Dashboard'>;
@@ -146,7 +148,7 @@ const DashboardScreen: React.FC = () => {
         {/* Categories Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Categories</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('AllCategoriesScreen')}>
           <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
           <View style={styles.categories}>
@@ -180,7 +182,7 @@ const DashboardScreen: React.FC = () => {
         {/* Team Members Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Meet Our Team</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('TeamMemberScreen')}>
           <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
           <View style={styles.teamMembers}>
@@ -205,9 +207,9 @@ const DashboardScreen: React.FC = () => {
               if (item === 'Home') {
                 navigation.navigate('Dashboard');
               } else if (item === 'Search') {
-                navigation.navigate('Search');
+                navigation.navigate('SearchScreen');
               } else if (item === 'Bookings') {
-                navigation.navigate('Bookings');
+                navigation.navigate('BookingScreen');
               } else if (item === 'Profile') {
                 navigation.navigate('PhoneNumber');
               }
