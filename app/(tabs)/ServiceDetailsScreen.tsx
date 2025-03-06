@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity,
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-// Define the props type for the service details
+
 type ServiceDetailsScreenProps = {
   route: {
     params: {
@@ -18,10 +18,10 @@ type ServiceDetailsScreenProps = {
 };
 
 const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) => {
-  const { service } = route.params; // Extract the service data passed from the previous screen
+  const { service } = route.params; 
   const navigation = useNavigation();
   
-  // State for the booking form modal
+ 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [formData, setFormData] = useState({
     date: '',
@@ -31,9 +31,9 @@ const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) =>
     time: '',
   });
 
-  // Handle form submission
+  
   const handleBookingSubmit = () => {
-    // You can add your booking submission logic here
+    
     console.log(formData);
     setIsModalVisible(false); // Close modal after submitting
   };

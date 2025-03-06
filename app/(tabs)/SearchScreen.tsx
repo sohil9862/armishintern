@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingTop: 20,
     paddingHorizontal: 15,
-    justifyContent: 'space-between', // Ensures content is spaced out
+    justifyContent: 'space-between', 
   },
   backButton: {
     position: "absolute",
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderTopColor: '#ddd',
-    position: 'absolute',  // Fixes the navigation bar at the bottom
-    bottom: 0,  // Puts the nav bar at the very bottom
-    width: '100%',  // Makes sure it spans across the screen
+    position: 'absolute',  
+    bottom: 0,  
+    width: '100%',  
   },
   navItem: {
     alignItems: 'center',
