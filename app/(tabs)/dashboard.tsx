@@ -13,6 +13,7 @@ type RootStackParamList = {
   SpecialServicesScreen: undefined;
   SearchScreen: undefined;
   TeamMemberDetail: { name: string; role: string; image: any; rating: number; description: string };
+  notification: undefined;
 };
 
 type NavigationProps = StackNavigationProp<RootStackParamList, 'Dashboard'>;
@@ -111,12 +112,15 @@ const DashboardScreen: React.FC = () => {
 
           {/* Location Text in the Center */}
           <View style={styles.locationHeader}>
-            <Text style={styles.locationText}>{selectedLocation}</Text>
-          </View>
-
           <TouchableOpacity onPress={() => setShowLocationOptions(!showLocationOptions)}>
-            <Text style={styles.locationChangeText}>Change Location</Text>
+            <Text style={styles.locationChangeText}>{selectedLocation}</Text>
           </TouchableOpacity>
+          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('notification')}>
+  <Image source={require("../../assets/images/notification.png")} style={styles.notificationIcon} />
+</TouchableOpacity>
+
+          
         </View>
 
         
@@ -200,10 +204,7 @@ const DashboardScreen: React.FC = () => {
             {/* Display Team Member */}
             <Text style={styles.teamMember}>by {service.teamMember}</Text>
             <Text style={styles.popularPrice}>{service.price}</Text>
-            <Text style={styles.popularRating}>
-              {"★".repeat(Math.floor(service.rating))}{" "}
-              {service.rating % 1 !== 0 ? "☆" : ""} {/* Display partial star if applicable */}
-            </Text>
+            
       </TouchableOpacity>
     ))}
   </ScrollView>
@@ -257,6 +258,12 @@ const DashboardScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  notificationIcon: {
+    width: 30,
+    height: 30,
+    
+    
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -294,7 +301,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   locationOption: {
-    marginLeft: 15,
+    marginLeft: 5,
   },
   locationOptionText: {
     fontSize: 16,

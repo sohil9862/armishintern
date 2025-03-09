@@ -12,6 +12,7 @@ import ServiceDetailsScreen from './(tabs)/ServiceDetailsScreen';
 import CategoryDetailScreen from './(tabs)/CategoryDetailScreen';
 import SearchScreen from './(tabs)/SearchScreen';
 import BookingScreen from './(tabs)/BookingScreen';
+import NotificationScreen from './(tabs)/notification';
 
 
 type RootStackParamList = {
@@ -27,6 +28,7 @@ type RootStackParamList = {
   CategoryDetailScreen: undefined;
   SearchScreen: undefined;
   BookingScreen: undefined;
+  NotificationScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,6 +40,11 @@ const AppLayout: React.FC = () => {
         name="Welcome" 
         component={WelcomeScreen} 
         options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="notification" 
+        component={NotificationScreen} 
+        options={{ title: 'notification' }} 
       />
       <Stack.Screen 
         name="Dashboard" 
