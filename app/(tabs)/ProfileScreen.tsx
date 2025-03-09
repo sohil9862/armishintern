@@ -20,6 +20,7 @@ type RootStackParamList = {
   Bookings: undefined;
   ProfileScreen: undefined;
   SearchScreen: undefined;
+  EditProfileScreen: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -68,7 +69,7 @@ const ProfileScreen: React.FC = () => {
           />
           <Text style={styles.name}>Peter Parker</Text>
           <Text style={styles.phone}>+977 9723456789</Text>
-          <TouchableOpacity style={styles.editButton} onPress={() => setIsModalVisible(true)}>
+          <TouchableOpacity style={styles.editButton} onPress={() => navigation.navigate('EditProfileScreen')}>
             <Text style={styles.editButtonText}>Edit Profile</Text>
           </TouchableOpacity>
         </View>
@@ -87,81 +88,9 @@ const ProfileScreen: React.FC = () => {
           ))}
         </View>
 
-        {/* Profile Edit Modal */}
-<Modal visible={isModalVisible} animationType="slide" transparent={true}>
-  <View style={styles.modalContainer}>
-    <View style={styles.modalContent}>
-      <Text style={styles.modalTitle}>Edit Profile</Text>
-      
-      {/* Form Fields for Profile Edit */}
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={formData.member} // Update this if you're storing the user's name elsewhere
-        onChangeText={(text) => setFormData({ ...formData, member: text })}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Phone Number"
-        value={formData.phone} // Add a phone field to your form data
-        onChangeText={(text) => setFormData({ ...formData, phone: text })}
-        keyboardType="phone-pad"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Address"
-        value={formData.address}
-        onChangeText={(text) => setFormData({ ...formData, address: text })}
-      />
-      
-      {/* Submit Button */}
-      <Button title="Save Changes" onPress={handleBookingSubmit} /> {/* You can rename handleBookingSubmit to handleProfileUpdate */}
-      
-      {/* Close Button */}
-      <TouchableOpacity style={styles.closeButton} onPress={() => setIsModalVisible(false)}>
-        <Text style={styles.closeButtonText}>Close</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-</Modal>
+       
 
-{/* Address Edit Modal */}
-<Modal visible={isAddressModalVisible} animationType="slide" transparent={true}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Edit Address</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Address Name"
-                value={addressData.name}
-                onChangeText={(text) => setAddressData({ ...addressData, name: text })}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Street Address"
-                value={addressData.street}
-                onChangeText={(text) => setAddressData({ ...addressData, street: text })}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Landmark"
-                value={addressData.landmark}
-                onChangeText={(text) => setAddressData({ ...addressData, landmark: text })}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Phone Number"
-                value={addressData.phone}
-                onChangeText={(text) => setAddressData({ ...addressData, phone: text })}
-                keyboardType="phone-pad"
-              />
-              <Button title="Save Address" onPress={handleAddressSubmit} />
-              <TouchableOpacity style={styles.closeButton} onPress={() => setIsAddressModalVisible(false)}>
-                <Text style={styles.closeButtonText}>Close</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+
 
         {/* Address Book */}
         <View style={styles.addressBook}>
