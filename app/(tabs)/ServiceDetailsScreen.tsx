@@ -50,12 +50,25 @@ const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) =>
       <View style={styles.detailsContainer}>
         <Text style={styles.title}>{service.title}</Text>
         <Text style={styles.price}>{service.price}</Text>
-        <Text style={styles.description}>{service.description}</Text>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.description}>{service.description}</Text>
+        </View>
+      </View>
+
+      {/* Team Member Section */}
+      <View style={styles.teamMemberContainer}>
+        <Text style={styles.teamMemberTitle}>Meet Our Expert: Sarah Lee</Text>
+        <Image source={require('../../assets/images/laptop.jpg')} style={styles.teamMemberImage} />
+        <Text style={styles.teamMemberName}>Sarah Lee</Text>
+        <Text style={styles.teamMemberRole}>Electrician</Text>
+        <Text style={styles.teamMemberDescription}>
+          Sarah is a certified electrician with years of hands-on experience, providing top-notch electrical services for both residential and commercial projects.
+        </Text>
       </View>
 
       {/* Booking Button */}
       <TouchableOpacity style={styles.bookingButton} onPress={() => setIsModalVisible(true)}>
-        <Text style={styles.bookingButtonText}>Book Now</Text>
+        <Text style={styles.bookingButtonText}>Proceed</Text>
       </TouchableOpacity>
 
       {/* Booking Form Modal */}
@@ -140,15 +153,52 @@ const styles = StyleSheet.create({
     color: '#007bff',
     marginVertical: 10,
   },
+  descriptionContainer: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 10,
+  },
   description: {
     fontSize: 16,
     color: '#555',
+  },
+  teamMemberContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+  },
+  teamMemberTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  teamMemberImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 10,
+  },
+  teamMemberName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  teamMemberRole: {
+    fontSize: 16,
+    color: '#007bff',
+    marginBottom: 10,
+  },
+  teamMemberDescription: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#555',
+    paddingHorizontal: 20,
   },
   bookingButton: {
     backgroundColor: '#007bff',
     padding: 15,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 50, // Increased margin-top to push the button further down
     alignItems: 'center',
   },
   bookingButtonText: {

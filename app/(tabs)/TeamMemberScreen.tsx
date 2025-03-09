@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const teamMembers = [
   { 
     name: "John Doe", 
-    role: "Manager", 
+    role: "Manager",   
     image: require("../../assets/images/laptop.jpg"), 
     rating: 4.8,
     description: "John is an experienced manager with a track record of leading successful projects."
@@ -66,10 +67,13 @@ const TeamMembersScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-        <Text style={styles.backText}>← Back</Text>
-      </TouchableOpacity>
-      <Text style={styles.title}>Meet Our Team</Text>
+      <View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.title}>Meet Our Team</Text>
+        <Ionicons name="search" size={24} color="black" style={styles.searchIcon} />
+      </View>
       <ScrollView contentContainerStyle={styles.scrollView}>
         {teamMembers.map((member, index) => (
           <TouchableOpacity 
@@ -77,11 +81,20 @@ const TeamMembersScreen = () => {
             style={styles.teamCard} 
             onPress={() => navigation.navigate("TeamMemberDetailScreen", member)}
           >
-            <Image source={member.image} style={styles.teamImage} />
-            <Text style={styles.teamName}>{member.name}</Text>
-            <Text style={styles.teamRole}>{member.role}</Text>
-            <Text style={styles.teamRating}>⭐ {member.rating}</Text>
-            <Text style={styles.teamDescription}>{member.description}</Text>
+            <View style={styles.cardContent}>
+              <Image source={member.image} style={styles.teamImage} />
+              <View style={styles.textContainer}>
+                <Text style={styles.teamName}>{member.name}</Text>
+                <Text style={styles.teamRole}>{member.role}</Text>
+                <Text style={styles.teamRating}>⭐ {member.rating}</Text>
+              </View>
+              <TouchableOpacity 
+                style={styles.visitButton}
+                onPress={() => navigation.navigate("TeamMemberDetailScreen", member)}
+              >
+                <Text style={styles.visitText}>Visit</Text>
+              </TouchableOpacity>
+            </View>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -95,19 +108,26 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 15,
   },
-  backButton: {
-    padding: 10,
-    marginBottom: 10,
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 15,
   },
-  backText: {
-    fontSize: 16,
-    color: "#007bff",
+  backButton: {
+    position: "absolute",
+    top: 15,
+    left: 15,
+    zIndex: 1,
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 15,
     textAlign: "center",
+    flex: 1, // To center the title between back button and search icon
+  },
+  searchIcon: {
+    marginRight: 10, // Adjust the space between the title and the icon
   },
   scrollView: {
     flexGrow: 1,
@@ -118,14 +138,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#f8f9fa",
     borderRadius: 8,
     padding: 15,
-    alignItems: "center",
     marginBottom: 10,
+  },
+  cardContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between", // Added this to space out the items
   },
   teamImage: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    marginBottom: 10,
+    marginRight: 15,
+  },
+  textContainer: {
+    flex: 1,
   },
   teamName: {
     fontWeight: "bold",
@@ -140,12 +167,18 @@ const styles = StyleSheet.create({
     color: "#ffa500",
     marginTop: 5,
   },
-  teamDescription: {
-    fontSize: 12,
-    color: "#555",
-    textAlign: "center",
-    marginTop: 5,
-    paddingHorizontal: 10,
+  visitButton: {
+    backgroundColor: "#007bff",
+    padding: 10,
+    borderRadius: 5,
+    marginLeft: 10, // Added to separate it from text
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  visitText: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });
 

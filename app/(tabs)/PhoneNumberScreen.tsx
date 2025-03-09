@@ -18,11 +18,7 @@ const PhoneNumberScreen: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleContinue = () => {
-    if (phoneNumber) {
-      navigation.navigate('Profile');
-    } else {
-      alert('Please enter a valid phone number');
-    }
+    navigation.navigate('Profile');
   };
 
   return (

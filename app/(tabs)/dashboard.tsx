@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput 
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from '@react-navigation/stack';
 
+
 type RootStackParamList = {
   PhoneNumber: undefined;
   Dashboard: undefined;
@@ -29,26 +30,36 @@ const DashboardScreen: React.FC = () => {
       title: "Laptop Servicing",
       price: "Rs. 2000",
       image: require("../../assets/images/laptop.jpg"),
+      rating: 4.5,
+      teamMember: "Emily", 
     },
     {
       title: "AC Repair",
       price: "Rs. 1500",
       image: require("../../assets/images/laptop.jpg"),
+      rating: 4,
+      teamMember: "Tom", 
     },
     {
       title: "Cleaning Service",
       price: "Rs. 500",
       image: require("../../assets/images/laptop.jpg"),
+      rating: 3.5,
+      teamMember: "Mark", 
     },
     {
       title: "Car Service",
       price: "Rs. 3000",
       image: require("../../assets/images/laptop.jpg"),
+      rating: 4.5,
+      teamMember: "John", 
     },
     {
       title: "Painting Services",
       price: "Rs. 1200",
       image: require("../../assets/images/laptop.jpg"),
+      rating: 4,
+      teamMember: "Tom", 
     },
   ];
 
@@ -58,15 +69,14 @@ const DashboardScreen: React.FC = () => {
     { title: "Pet Care", icon: "🐾" },
     { title: "Cleaning", icon: "🧹" },
     { title: "Home Maintenance", icon: "🔧" },
-    { title: "Beauty & Spa", icon: "💅" },
+    
   ];
 
   // Special Service (Gas Installation with Discount)
   const specialService = {
-    title: "Gas Installation",
-    discount: "30% OFF",
-    price: "Rs. 5000",
-    discountedPrice: "Rs. 3500",
+    title: "Dashain Offer Get Special Offer",
+    discount: "Up to 30% OFF",
+    price: "Plumbing: Gas Geyser Installation",
     image: require("../../assets/images/laptop.jpg"),
   };
 
@@ -109,6 +119,8 @@ const DashboardScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+        
+
         {showLocationOptions && (
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.locationOptions}>
             {['Kathmandu', 'Pokhara', 'Chitwan'].map((location, index) => (
@@ -123,6 +135,7 @@ const DashboardScreen: React.FC = () => {
             ))}
           </ScrollView>
         )}
+        
 
         {/* Header with Search */}
         <View style={styles.searchContainer}>
@@ -132,17 +145,19 @@ const DashboardScreen: React.FC = () => {
         {/* 🔥 Special Service Section 🔥 */}
         
         <View style={styles.specialService}>
-          <Image source={specialService.image} style={styles.specialImage} />
           <View style={styles.specialDetails}>
-          <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
-          <Text style={styles.seeAll}>See All</Text>
-          </TouchableOpacity>
             <Text style={styles.specialTitle}>{specialService.title}</Text>
             <Text style={styles.specialDiscount}>{specialService.discount}</Text>
-            <Text style={styles.specialPrice}>
-              <Text style={styles.originalPrice}>{specialService.price}</Text> → {specialService.discountedPrice}
-            </Text>
+            <Text style={styles.specialPrice}></Text>
+            <TouchableOpacity 
+          style={styles.serviceButton} 
+          onPress={() => navigation.navigate('SpecialServicesScreen')}
+        >
+          <Text style={styles.buttonText}>Get Service Now</Text>
+        </TouchableOpacity>
+            
           </View>
+          <Image source={specialService.image} style={styles.specialImage} />
         </View>
 
         {/* Categories Section */}
@@ -168,15 +183,30 @@ const DashboardScreen: React.FC = () => {
           <TouchableOpacity onPress={() => navigation.navigate('SpecialServicesScreen')}>
           <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
-          <View style={styles.popularServices}>
-            {services.map((service, index) => (
-              <TouchableOpacity key={index} style={styles.popularCard}>
-                <Image source={service.image} style={styles.popularImage} />
-                <Text style={styles.popularTitle}>{service.title}</Text>
-                <Text style={styles.popularPrice}>{service.price}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.popularServices}>
+    {services.map((service, index) => (
+      <TouchableOpacity key={index} style={styles.popularCard}>
+        <Image source={service.image} style={styles.popularImage} />
+        <Text style={styles.popularTitle}>{service.title}</Text>
+        
+
+         {/* Display Rating */}
+         <Text style={styles.popularRating}>
+              {"★".repeat(Math.floor(service.rating))}{" "}
+              {service.rating % 1 !== 0 ? "☆" : ""} {/* Display partial star if applicable */}
+            </Text>
+
+            {/* Display Team Member */}
+            <Text style={styles.teamMember}>by {service.teamMember}</Text>
+            <Text style={styles.popularPrice}>{service.price}</Text>
+            <Text style={styles.popularRating}>
+              {"★".repeat(Math.floor(service.rating))}{" "}
+              {service.rating % 1 !== 0 ? "☆" : ""} {/* Display partial star if applicable */}
+            </Text>
+      </TouchableOpacity>
+    ))}
+  </ScrollView>
         </View>
 
         {/* Team Members Section */}
@@ -293,45 +323,48 @@ const styles = StyleSheet.create({
   },
   
   specialService: {
-    flexDirection: 'row',        // Align items in a row
-    alignItems: 'center',        // Center the items vertically
-    backgroundColor: 'lightblue',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#007bff',
     padding: 15,
     borderRadius: 10,
     margin: 15,
-    justifyContent: 'space-between',  // Space between the image and 'See All' button
+    justifyContent: 'space-between',
   },
-  
   specialImage: {
     width: 100,
     height: 100,
-    borderRadius: 8,
-    marginRight: 10,            // Space between image and the text area
+    borderRadius: 50,
+    marginRight: 10,
   },
-  
   specialDetails: {
-    flex: 1,                   // Allow the details section to take remaining space
-    justifyContent: 'center',   // Center content vertically
+    flex: 1,
   },
-  
   specialTitle: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: 'white',
   },
-  
   specialDiscount: {
-    fontSize: 14,
-    color: 'green',
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: 'white',
   },
-  
   specialPrice: {
     fontSize: 14,
-    color: 'red',
+    color: 'white',
   },
-  
-  originalPrice: {
-    textDecorationLine: 'line-through',
-    marginRight: 5,
+  serviceButton: {
+    backgroundColor: 'white',
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    marginTop: 10,
+    alignSelf: 'flex-start',
+  },
+  buttonText: {
+    color: '#007bff',
+    fontWeight: 'bold',
   },
   section: {
     marginVertical: 10,
@@ -342,23 +375,25 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   categories: {
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: "row", // Align items in a row
+    flexWrap: "nowrap", // Do not wrap items
+    justifyContent: "flex-start", // Align to the start of the row
   },
   categoryCard: {
-    width: "30%",
+    width: 90, // Smaller width for each category card
     backgroundColor: "#f1f1f1",
     padding: 10,
-    margin: 5,
+    marginRight: 10, // Add spacing between cards
     borderRadius: 8,
     alignItems: "center",
+    justifyContent: "center", // Center the icon and text within the card
   },
   categoryIcon: {
     fontSize: 24,
     marginBottom: 5,
   },
   categoryText: {
-    fontSize: 12,
+    fontSize: 10, // Smaller font size for category text
     textAlign: "center",
   },
   popularServices: {
@@ -366,13 +401,19 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
   },
+  popularServices: {
+    flexDirection: "row", // Ensure items are aligned in a row
+    paddingVertical: 10,
+  },
   popularCard: {
-    width: "47%",
+    width: 160, // Set a fixed width for each card
     backgroundColor: "#fff",
     borderRadius: 8,
     padding: 10,
     alignItems: "center",
-    marginBottom: 10,
+    marginRight: 10, // Space between cards
+    borderWidth: 1, // Adds the border width
+    borderColor: "#ddd", // Sets the border color (light gray)
   },
   popularImage: {
     width: "100%",
@@ -382,10 +423,23 @@ const styles = StyleSheet.create({
   },
   popularTitle: {
     fontSize: 12,
+    textAlign: "center",
   },
   popularPrice: {
     fontSize: 12,
     fontWeight: "bold",
+    textAlign: "center",
+  },
+  popularRating: {
+    fontSize: 14,
+    color: "#ffd700", // Gold color for the rating stars
+    textAlign: "center",
+  },
+  teamMember: {
+    fontSize: 12,
+    color: "#555", // Lighter color for the team member name
+    textAlign: "center",
+    marginTop: 5, // Add some space above the name
   },
   teamMembers: {
     flexDirection: "row",
