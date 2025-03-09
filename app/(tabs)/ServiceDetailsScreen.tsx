@@ -67,59 +67,11 @@ const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) =>
       </View>
 
       {/* Booking Button */}
-      <TouchableOpacity style={styles.bookingButton} onPress={() => setIsModalVisible(true)}>
+      <TouchableOpacity style={styles.bookingButton} onPress={() => navigation.navigate('BookingDetailsScreen')}>
         <Text style={styles.bookingButtonText}>Proceed</Text>
       </TouchableOpacity>
 
-      {/* Booking Form Modal */}
-      <Modal visible={isModalVisible} animationType="slide" transparent={true}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Booking Form</Text>
-            
-            {/* Form Fields */}
-            <TextInput
-              style={styles.input}
-              placeholder="Date"
-              value={formData.date}
-              onChangeText={(text) => setFormData({ ...formData, date: text })}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Member"
-              value={formData.member}
-              onChangeText={(text) => setFormData({ ...formData, member: text })}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Address"
-              value={formData.address}
-              onChangeText={(text) => setFormData({ ...formData, address: text })}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Negotiated Cost"
-              keyboardType="numeric"
-              value={formData.negotiatedCost}
-              onChangeText={(text) => setFormData({ ...formData, negotiatedCost: text })}
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Time"
-              value={formData.time}
-              onChangeText={(text) => setFormData({ ...formData, time: text })}
-            />
-            
-            {/* Submit Button */}
-            <Button title="Submit Booking" onPress={handleBookingSubmit} />
-
-            {/* Close Button */}
-            <TouchableOpacity style={styles.closeButton} onPress={() => setIsModalVisible(false)}>
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+    
     </ScrollView>
   );
 };

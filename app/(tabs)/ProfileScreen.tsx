@@ -21,6 +21,7 @@ type RootStackParamList = {
   ProfileScreen: undefined;
   SearchScreen: undefined;
   EditProfileScreen: undefined;
+  AddAddressScreen: undefined;
 };
 
 type ProfileScreenNavigationProp = StackNavigationProp<
@@ -30,8 +31,7 @@ type ProfileScreenNavigationProp = StackNavigationProp<
 
 const ProfileScreen: React.FC = () => {
   const navigation = useNavigation<ProfileScreenNavigationProp>();
-  const [isAddressModalVisible, setIsAddressModalVisible] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const [formData, setFormData] = useState({
     date: '',
     member: '',
@@ -39,6 +39,7 @@ const ProfileScreen: React.FC = () => {
     negotiatedCost: '',
     time: ''
   });
+
   const [addressData, setAddressData] = useState({
     name: 'Peter Parker (Home)',
     street: 'Kamal Pokhari | Kathmandu',
@@ -46,9 +47,10 @@ const ProfileScreen: React.FC = () => {
     phone: '9702222344'
   });
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isAddressModalVisible, setIsAddressModalVisible] = useState(false);
 
   const handleBookingSubmit = () => {
-    // Handle form submission
     console.log(formData);
     setIsModalVisible(false);
   };
@@ -88,10 +90,6 @@ const ProfileScreen: React.FC = () => {
           ))}
         </View>
 
-       
-
-
-
         {/* Address Book */}
         <View style={styles.addressBook}>
           <Text style={styles.addressTitle}>Address Book</Text>
@@ -101,7 +99,7 @@ const ProfileScreen: React.FC = () => {
             <Text>Near Star Mall</Text>
             <Text>9702222344</Text>
             <View style={styles.addressActions}>
-              <TouchableOpacity onPress={() => setIsAddressModalVisible(true)}>
+              <TouchableOpacity>
                 <Text style={styles.editText}>EDIT</Text>
               </TouchableOpacity>
               <TouchableOpacity>
@@ -109,7 +107,7 @@ const ProfileScreen: React.FC = () => {
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('AddAddressScreen')}>
             <Text style={styles.addAddress}>+ ADD</Text>
           </TouchableOpacity>
         </View>
@@ -141,7 +139,7 @@ const ProfileScreen: React.FC = () => {
               } else if (item === 'Search') {
                 navigation.navigate('SearchScreen');
               } else if (item === 'Bookings') {
-                navigation.navigate('BookingScreen');
+                navigation.navigate('Bookings'); // Corrected
               } else if (item === 'Profile') {
                 navigation.navigate('PhoneNumber');
               }
@@ -159,177 +157,32 @@ const ProfileScreen: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  scrollContainer: {
-    flex: 1,
-    padding: 20,
-  },
-  profileSection: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 10,
-  },
-  name: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  phone: {
-    color: 'gray',
-  },
-  editButton: {
-    backgroundColor: '#007bff',
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    marginTop: 10,
-  },
-  editButtonText: {
-    color: '#fff',
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
-  statCard: {
-    backgroundColor: '#007bff',
-    borderRadius: 10,
-    padding: 15,
-    width: '30%',
-    alignItems: 'center',
-  },
-  statCount: {
-    fontSize: 24,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  statLabel: {
-    color: '#fff',
-    fontSize: 12,
-    textAlign: 'center',
-  },
-  bookingButton: {
-    backgroundColor: '#007bff',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    marginTop: 20,
-    alignItems: 'center',
-  },
-  bookingButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    width: '80%',
-    padding: 20,
-    backgroundColor: '#fff',
-    borderRadius: 10,
-  },
-  modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-  },
-  closeButton: {
-    backgroundColor: '#f44336',
-    paddingVertical: 10,
-    borderRadius: 20,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  closeButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-  addressBook: {
-    marginBottom: 20,
-  },
-  addressTitle: {
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  addressItem: {
-    backgroundColor: '#f9f9f9',
-    padding: 10,
-    borderRadius: 10,
-  },
-  addressActions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  editText: {
-    color: '#007bff',
-    fontWeight: 'bold',
-  },
-  deleteText: {
-    color: 'red',
-    fontWeight: 'bold',
-  },
-  addAddress: {
-    color: '#007bff',
-    fontWeight: 'bold',
-    marginTop: 10,
-  },
-  settings: {
-    backgroundColor: '#fff',
-  },
-  settingItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '#007bff',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  settingText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    flex: 1,
-    marginLeft: 10,
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 10,
-    backgroundColor: '#fff',
-    borderTopWidth: 1,
-    borderTopColor: '#ddd',
-  },
-  navItem: {
-    alignItems: 'center',
-  },
-  navIcon: {
-    fontSize: 20,
-  },
-  navText: {
-    fontSize: 12,
-    color: 'gray',
-  },
+  container: { flex: 1, backgroundColor: '#fff' },
+  scrollContainer: { flex: 1, padding: 20 },
+  profileSection: { alignItems: 'center', marginBottom: 20 },
+  avatar: { width: 80, height: 80, borderRadius: 40, marginBottom: 10 },
+  name: { fontSize: 18, fontWeight: 'bold' },
+  phone: { color: 'gray' },
+  editButton: { backgroundColor: '#007bff', paddingVertical: 5, paddingHorizontal: 15, borderRadius: 20, marginTop: 10 },
+  editButtonText: { color: '#fff' },
+  statsContainer: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
+  statCard: { backgroundColor: '#007bff', borderRadius: 10, padding: 15, width: '30%', alignItems: 'center' },
+  statCount: { fontSize: 24, color: '#fff', fontWeight: 'bold' },
+  statLabel: { color: '#fff', fontSize: 12, textAlign: 'center' },
+  addressBook: { marginBottom: 20 },
+  addressTitle: { fontWeight: 'bold', marginBottom: 10 },
+  addressItem: { backgroundColor: '#f9f9f9', padding: 10, borderRadius: 10 },
+  addressActions: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 },
+  editText: { color: '#007bff', fontWeight: 'bold' },
+  deleteText: { color: 'red', fontWeight: 'bold' },
+  addAddress: { color: '#007bff', fontWeight: 'bold', marginTop: 10 },
+  settings: { backgroundColor: '#fff' },
+  settingItem: { backgroundColor: '#007bff', padding: 15, borderRadius: 10, alignItems: 'center', marginBottom: 10 },
+  settingText: { color: '#fff', fontWeight: 'bold' },
+  bottomNav: { flexDirection: 'row', justifyContent: 'space-around', padding: 10, backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#ddd' },
+  navItem: { alignItems: 'center' },
+  navIcon: { fontSize: 20 },
+  navText: { fontSize: 12, color: 'gray' },
 });
 
 export default ProfileScreen;
