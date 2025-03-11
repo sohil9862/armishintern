@@ -20,11 +20,11 @@ const SpecialServicesScreen: React.FC = () => {
 
   const services = [
     { title: 'Laptop Servicing', price: 'Rs. 2000', description: 'Expert laptop servicing.', image: require('../../assets/images/laptop.jpg'), rating: '4.5/5', teamMember: 'Tom' },
-    { title: 'Plumbing', price: 'Rs. 1500', description: 'Professional plumbing services.', image: require('../../assets/images/laptop.jpg'), rating: '4.2/5', teamMember: 'Jerry' },
-    { title: 'Car Servicing', price: 'Rs. 3000', description: 'Comprehensive car servicing.', image: require('../../assets/images/laptop.jpg'), rating: '4.8/5', teamMember: 'Alice' },
-    { title: 'House Cleaning', price: 'Rs. 1200', description: 'Deep cleaning for your home.', image: require('../../assets/images/laptop.jpg'), rating: '4.6/5', teamMember: 'Bob' },
-    { title: 'Electrical Repair', price: 'Rs. 1800', description: 'Expert electrical services.', image: require('../../assets/images/laptop.jpg'), rating: '4.3/5', teamMember: 'Lily' },
-    { title: 'Carpentry', price: 'Rs. 2200', description: 'Custom furniture and repairs.', image: require('../../assets/images/laptop.jpg'), rating: '4.7/5', teamMember: 'John' },
+    { title: 'Plumbing', price: 'Rs. 1500', description: 'Professional plumbing services.', image: require('../../assets/images/cleaning.jpg'), rating: '4.2/5', teamMember: 'Jerry' },
+    { title: 'Car Servicing', price: 'Rs. 3000', description: 'Comprehensive car servicing.', image: require('../../assets/images/silicon.jpg'), rating: '4.8/5', teamMember: 'Alice' },
+    { title: 'House Cleaning', price: 'Rs. 1200', description: 'Deep cleaning for your home.', image: require('../../assets/images/ac-repair.jpg'), rating: '4.6/5', teamMember: 'Bob' },
+    { title: 'Electrical Repair', price: 'Rs. 1800', description: 'Expert electrical services.', image: require('../../assets/images/car.jpg'), rating: '4.3/5', teamMember: 'Lily' },
+    { title: 'Carpentry', price: 'Rs. 2200', description: 'Custom furniture and repairs.', image: require('../../assets/images/gardening.jpg'), rating: '4.7/5', teamMember: 'John' },
   ];
 
   return (

@@ -8,56 +8,56 @@ const teamMembers = [
   { 
     name: "John Doe", 
     role: "Manager",   
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/john.jpg"), 
     rating: 4.8,
     description: "John is an experienced manager with a track record of leading successful projects."
   },
   { 
     name: "Mark Smith", 
     role: "Technician", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/kevin.jpg"), 
     rating: 4.5,
     description: "Mark specializes in troubleshooting and repairing electronic devices."
   },
   { 
     name: "Tom White", 
     role: "Support", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/tom.jpg"), 
     rating: 4.7,
     description: "Tom is known for his exceptional customer support and problem-solving skills."
   },
   { 
     name: "Emily Johnson", 
     role: "Designer", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/will.jpg"), 
     rating: 4.6,
     description: "Emily is a creative designer with expertise in modern and aesthetic designs."
   },
   { 
     name: "Sarah Lee", 
     role: "Electrician", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/chris.jpg"), 
     rating: 4.9,
     description: "Sarah is a certified electrician with years of hands-on experience."
   },
   { 
     name: "Michael Brown", 
     role: "Plumber", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/robert.jpg"), 
     rating: 4.4,
     description: "Michael is an expert in plumbing solutions, ensuring leak-free installations."
   },
   { 
     name: "Jessica Davis", 
     role: "Painter", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/natalie.jpg"), 
     rating: 4.3,
     description: "Jessica transforms spaces with her expert painting skills and attention to detail."
   },
   { 
     name: "David Wilson", 
     role: "Carpenter", 
-    image: require("../../assets/images/laptop.jpg"), 
+    image: require("../../assets/images/scarlett.jpg"), 
     rating: 4.7,
     description: "David crafts custom woodwork with precision and quality craftsmanship."
   },

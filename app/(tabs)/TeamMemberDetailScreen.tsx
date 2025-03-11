@@ -38,7 +38,7 @@ const TeamMemberDetailScreen: React.FC = () => {
 
         {/* Laptop Repairing Service */}
         <View style={styles.serviceBox}>
-          <Image source={require("../../assets/images/laptop.jpg")} style={styles.serviceImageLeft} />
+          <Image source={require("../../assets/images/silicon.jpg")} style={styles.serviceImageLeft} />
           <View style={styles.serviceTextContainer}>
             <Text style={styles.serviceTitle}>Laptop Repairing</Text>
             <Text style={styles.serviceDescription}>
@@ -49,7 +49,7 @@ const TeamMemberDetailScreen: React.FC = () => {
 
         {/* Plumbing Service */}
         <View style={styles.serviceBox}>
-          <Image source={require("../../assets/images/laptop.jpg")} style={styles.serviceImageRight} />
+          <Image source={require("../../assets/images/ac-repair.jpg")} style={styles.serviceImageRight} />
           <View style={styles.serviceTextContainer}>
             <Text style={styles.serviceTitle}>Plumbing</Text>
             <Text style={styles.serviceDescription}>
@@ -71,7 +71,7 @@ const TeamMemberDetailScreen: React.FC = () => {
 
         {/* AC Repairing Service */}
         <View style={styles.serviceBox}>
-          <Image source={require("../../assets/images/laptop.jpg")} style={styles.serviceImageRight} />
+          <Image source={require("../../assets/images/cleaning.jpg")} style={styles.serviceImageRight} />
           <View style={styles.serviceTextContainer}>
             <Text style={styles.serviceTitle}>AC Repairing</Text>
             <Text style={styles.serviceDescription}>

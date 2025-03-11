@@ -37,28 +37,28 @@ const DashboardScreen: React.FC = () => {
     {
       title: "AC Repair",
       price: "Rs. 1500",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/cleaning.jpg"),
       rating: 4,
       teamMember: "Tom", 
     },
     {
       title: "Cleaning Service",
       price: "Rs. 500",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/silicon.jpg"),
       rating: 3.5,
       teamMember: "Mark", 
     },
     {
       title: "Car Service",
       price: "Rs. 3000",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/server.jpg"),
       rating: 4.5,
       teamMember: "John", 
     },
     {
       title: "Painting Services",
       price: "Rs. 1200",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/car.jpg"),
       rating: 4,
       teamMember: "Tom", 
     },
@@ -78,7 +78,7 @@ const DashboardScreen: React.FC = () => {
     title: "Dashain Offer Get Special Offer",
     discount: "Up to 30% OFF",
     price: "Plumbing: Gas Geyser Installation",
-    image: require("../../assets/images/laptop.jpg"),
+    image: require("../../assets/images/ac-repair.jpg"),
   };
 
 
@@ -86,17 +86,17 @@ const DashboardScreen: React.FC = () => {
     {
       name: "John Doe",
       role: "Manager",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/john.jpg"),
     },
     {
       name: "Mark Smith",
       role: "Technician",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/kevin.jpg"),
     },
     {
       name: "Tom White",
       role: "Support",
-      image: require("../../assets/images/laptop.jpg"),
+      image: require("../../assets/images/tom.jpg"),
     },
   ];
 

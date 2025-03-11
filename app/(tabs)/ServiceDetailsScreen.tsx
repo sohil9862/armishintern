@@ -58,7 +58,7 @@ const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) =>
       {/* Team Member Section */}
       <View style={styles.teamMemberContainer}>
         <Text style={styles.teamMemberTitle}>Meet Our Expert: Sarah Lee</Text>
-        <Image source={require('../../assets/images/laptop.jpg')} style={styles.teamMemberImage} />
+        <Image source={require('../../assets/images/john.jpg')} style={styles.teamMemberImage} />
         <Text style={styles.teamMemberName}>Sarah Lee</Text>
         <Text style={styles.teamMemberRole}>Electrician</Text>
         <Text style={styles.teamMemberDescription}>
