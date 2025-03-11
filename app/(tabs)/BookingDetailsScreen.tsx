@@ -16,7 +16,7 @@ const BookingDetailsScreen: React.FC = () => {
   const handleBookingSubmit = () => {
     console.log('Booking Details:', formData);
     alert('Booking Confirmed!');
-    navigation.goBack(); // Navigate back after confirming the booking
+    navigation.goBack();
   };
 
   return (

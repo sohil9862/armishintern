@@ -125,10 +125,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
-    flex: 1, // To center the title between back button and search icon
+    flex: 1, 
   },
   searchIcon: {
-    marginRight: 10, // Adjust the space between the title and the icon
+    marginRight: 10, 
   },
   scrollView: {
     flexGrow: 1,
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   cardContent: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between", // Added this to space out the items
+    justifyContent: "space-between", 
   },
   teamImage: {
     width: 80,
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#007bff",
     padding: 10,
     borderRadius: 5,
-    marginLeft: 10, // Added to separate it from text
+    marginLeft: 10, 
     justifyContent: "center",
     alignItems: "center",
   },

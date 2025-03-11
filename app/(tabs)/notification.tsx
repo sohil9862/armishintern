@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons
+import { Ionicons } from '@expo/vector-icons';
 
 const notificationsData = [
   { id: '1', title: 'New Service Available', message: 'Check out our new home cleaning service with a special offer!', image: require('../../assets/images/laptop.jpg') },

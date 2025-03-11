@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // Importing icon for back button
+import { Ionicons } from '@expo/vector-icons'; 
 
 const EditProfileScreen: React.FC = () => {
   const navigation = useNavigation();
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
-    marginTop: 40, // Added margin to avoid overlap with back button
+    marginTop: 40, 
   },
   label: {
     fontSize: 16,

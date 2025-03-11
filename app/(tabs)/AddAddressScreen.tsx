@@ -11,7 +11,7 @@ const AddAddressScreen: React.FC = () => {
 
   const handleSave = () => {
     console.log('Saved Address:', { name, street, landmark, phone });
-    navigation.goBack(); // Navigate back after saving
+    navigation.goBack(); 
   };
 
   return (

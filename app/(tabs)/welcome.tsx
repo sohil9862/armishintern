@@ -38,17 +38,17 @@ const Welcome: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#007bff",  // Blue background
-    justifyContent: "space-between",  // Space between content and button
+    backgroundColor: "#007bff",  
+    justifyContent: "space-between",  
     padding: 20,
   },
   content: {
-    justifyContent: "center",  // Center content vertically
-    alignItems: "center",  // Center content horizontally
-    flex: 1,  // Take all available space
+    justifyContent: "center",  
+    alignItems: "center",  
+    flex: 1, 
   },
   icon: {
-    marginBottom: 30,  // Adds space between icon and title
+    marginBottom: 30,  
   },
   title: {
     fontSize: 34,
@@ -61,18 +61,18 @@ const styles = StyleSheet.create({
     fontSize: 21,
     color: "#fff",
     textAlign: "center",
-    marginBottom: 40,  // Adds space between subtitle and button
+    marginBottom: 40,  
   },
   button: {
-    backgroundColor: "#004085",  // Dark blue color for the button
+    backgroundColor: "#004085",  
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
     elevation: 3,
-    width: "80%",  // Center the button and make it smaller
+    width: "80%", 
     alignSelf: "center",
-    position: "absolute",  // Position the button at the bottom
-    bottom: 20,  // Ensure it stays at the very bottom
+    position: "absolute",  
+    bottom: 20,  
   },
   buttonText: {
     fontSize: 18,

@@ -12,7 +12,7 @@ const BookingScreen: React.FC = () => {
         {/* Static Booking Details */}
         <View style={styles.bookingCard}>
           <Image
-            source={require("../../assets/images/laptop.jpg")} // Local image for laptop repair
+            source={require("../../assets/images/laptop.jpg")} 
             style={styles.bookingImage}
           />
           <Text style={styles.bookingTitle}>Laptop Repair</Text>
@@ -23,7 +23,7 @@ const BookingScreen: React.FC = () => {
 
         <View style={styles.bookingCard}>
           <Image
-            source={require("../../assets/images/laptop.jpg")} // Local image for cleaning service (You can replace it with a relevant image)
+            source={require("../../assets/images/laptop.jpg")} 
             style={styles.bookingImage}
           />
           <Text style={styles.bookingTitle}>Cleaning Service</Text>

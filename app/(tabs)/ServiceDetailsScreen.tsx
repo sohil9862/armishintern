@@ -35,7 +35,7 @@ const ServiceDetailsScreen: React.FC<ServiceDetailsScreenProps> = ({ route }) =>
   const handleBookingSubmit = () => {
     
     console.log(formData);
-    setIsModalVisible(false); // Close modal after submitting
+    setIsModalVisible(false); 
   };
 
   return (
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#007bff',
     padding: 15,
     borderRadius: 10,
-    marginTop: 50, // Increased margin-top to push the button further down
+    marginTop: 50, 
     alignItems: 'center',
   },
   bookingButtonText: {

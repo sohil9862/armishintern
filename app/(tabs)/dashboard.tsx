@@ -21,11 +21,11 @@ type NavigationProps = StackNavigationProp<RootStackParamList, 'Dashboard'>;
 const DashboardScreen: React.FC = () => {
   const navigation = useNavigation();
 
-  // State for location
+
   const [selectedLocation, setSelectedLocation] = useState('Kathmandu');
   const [showLocationOptions, setShowLocationOptions] = useState(false);
 
-  // Expanded services
+ 
   const services = [
     {
       title: "Laptop Servicing",
@@ -73,7 +73,7 @@ const DashboardScreen: React.FC = () => {
     
   ];
 
-  // Special Service (Gas Installation with Discount)
+
   const specialService = {
     title: "Dashain Offer Get Special Offer",
     discount: "Up to 30% OFF",
@@ -81,7 +81,7 @@ const DashboardScreen: React.FC = () => {
     image: require("../../assets/images/laptop.jpg"),
   };
 
-  // Team members data
+
   const teamMembers = [
     {
       name: "John Doe",
@@ -130,7 +130,7 @@ const DashboardScreen: React.FC = () => {
             {['Kathmandu', 'Pokhara', 'Chitwan'].map((location, index) => (
               <TouchableOpacity key={index} onPress={() => {
                 setSelectedLocation(location);
-                setShowLocationOptions(false); // Close options after selection
+                setShowLocationOptions(false); 
               }} style={styles.locationOption}>
                 <Text style={[styles.locationOptionText, selectedLocation === location && styles.selectedLocation]}>
                   {location}
@@ -323,10 +323,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   seeAll: { 
-    fontSize: 14,              // Increased font size for better readability
+    fontSize: 14,              
     color: "blue",
     alignSelf: 'flex-end',
-    textDecorationLine: "underline",  // Make it look like a clickable link
+    textDecorationLine: "underline",  
   },
   
   specialService: {

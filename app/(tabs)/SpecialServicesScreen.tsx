@@ -4,20 +4,20 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 
-// Define the navigation type
+
 type RootStackParamList = {
   ServiceDetailsScreen: { service: { title: string; price: string; description: string; image: any; rating: string; teamMember: string } };
   Dashboard: undefined;
   SpecialServicesScreen: undefined;
 };
 
-// Navigation prop type
+
 type SpecialServicesScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SpecialServicesScreen'>;
 
 const SpecialServicesScreen: React.FC = () => {
   const navigation = useNavigation<SpecialServicesScreenNavigationProp>();
 
-  // Services data with rating and team member
+
   const services = [
     { title: 'Laptop Servicing', price: 'Rs. 2000', description: 'Expert laptop servicing.', image: require('../../assets/images/laptop.jpg'), rating: '4.5/5', teamMember: 'Tom' },
     { title: 'Plumbing', price: 'Rs. 1500', description: 'Professional plumbing services.', image: require('../../assets/images/laptop.jpg'), rating: '4.2/5', teamMember: 'Jerry' },
@@ -76,26 +76,26 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    justifyContent: 'center', // Centers the header title
+    justifyContent: 'center', 
     alignItems: 'center',
     marginBottom: 15,
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center', // Ensures the text is centered
-    flex: 1, // Make it take up available space so that the search icon can be aligned to the right
+    textAlign: 'center', 
+    flex: 1, 
   },
   searchIcon: {
     position: 'absolute',
-    right: 15, // Places the search icon on the right side
+    right: 15, 
   },
   serviceCard: {
     backgroundColor: '#fff',
     borderRadius: 10,
     marginBottom: 10,
     padding: 15,
-    flexDirection: 'row', // Aligning the image on the left and text on the right
+    flexDirection: 'row', 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   serviceTextContainer: {
-    flex: 1, // This ensures the text takes up available space, leaving room for the image
-    paddingLeft: 15, // Space between the text and image
+    flex: 1, 
+    paddingLeft: 15, 
   },
   image: {
     width: 120,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
     color: '#007bff',
-    marginTop: 5, // Added space below the rating
+    marginTop: 5, 
   },
   ratingContainer: {
     justifyContent: 'space-between',
@@ -126,12 +126,12 @@ const styles = StyleSheet.create({
   },
   popularRating: {
     fontSize: 12,
-    color: '#ffd700', // Gold color for rating
+    color: '#ffd700', 
   },
   teamMember: {
     fontSize: 12,
-    color: '#777', // Grey color for team member
-    marginBottom: 5, // Add spacing between team member and title
+    color: '#777', 
+    marginBottom: 5, 
   },
 });
 

@@ -139,7 +139,7 @@ const ProfileScreen: React.FC = () => {
               } else if (item === 'Search') {
                 navigation.navigate('SearchScreen');
               } else if (item === 'Bookings') {
-                navigation.navigate('Bookings'); // Corrected
+                navigation.navigate('Bookings'); 
               } else if (item === 'Profile') {
                 navigation.navigate('PhoneNumber');
               }

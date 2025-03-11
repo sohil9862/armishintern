@@ -4,7 +4,7 @@ import { RouteProp, useRoute, useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 
-// Define the navigation stack params
+
 type RootStackParamList = {
   TeamMembers: undefined;
   TeamMemberDetail: { name: string; role: string; image: any; rating: number; description: string };
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 3,
-    flexDirection: "row", // Change to row for side-by-side layout
+    flexDirection: "row", 
     alignItems: "center",
   },
   serviceImageLeft: {
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: "absolute",
-    top: 15, // Adjusted to match the other screen
+    top: 15,
     left: 15,
     zIndex: 1, 
   }

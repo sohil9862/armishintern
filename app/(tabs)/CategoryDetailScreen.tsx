@@ -16,8 +16,8 @@ const CategoryDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
   // Example of category images with local images
   const categoryImages: { [key: string]: any } = {
-    "Automobile": require("../../assets/images/laptop.jpg"), // Use a relevant local image
-    "Pet Care": require("../../assets/images/laptop.jpg"), // You can replace these with actual pet care images
+    "Automobile": require("../../assets/images/laptop.jpg"),
+    "Pet Care": require("../../assets/images/laptop.jpg"), 
     "Cleaning": require("../../assets/images/laptop.jpg"),
     "Home Maintenance": require("../../assets/images/laptop.jpg"),
     "Beauty & Spa": require("../../assets/images/laptop.jpg"),
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
     marginBottom: 15,
-    resizeMode: "cover",  // This ensures the image fits well
+    resizeMode: "cover",  
   },
   header: {
     fontSize: 20,
