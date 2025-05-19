@@ -16,6 +16,8 @@ import NotificationScreen from './(tabs)/notification';
 import EditProfileScreen from './(tabs)/EditProfileScreen';
 import AddAddressScreen from './(tabs)/AddAddressScreen';
 import BookingDetailsScreen from './(tabs)/BookingDetailsScreen';
+import AdminScreen from './(tabs)/AdminScreen';
+
 
 
 type RootStackParamList = {
@@ -35,6 +37,7 @@ type RootStackParamList = {
   EditProfileScreen: undefined;
   AddAddressScreen: undefined; 
   BookingDetailsScreen: undefined; 
+  AdminScreen: undefined; 
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -51,6 +54,11 @@ const AppLayout: React.FC = () => {
         name="BookingDetailsScreen" 
         component={BookingDetailsScreen} 
         options={{ title: 'BookingDetailsScreen'  }} 
+      />
+      <Stack.Screen 
+        name="AdminScreen" 
+        component={AdminScreen} 
+        options={{ title: 'AdminScreen'  }} 
       />
       <Stack.Screen 
         name="AddAddressScreen" 

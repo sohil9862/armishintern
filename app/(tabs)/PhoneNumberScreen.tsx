@@ -9,6 +9,7 @@ type RootStackParamList = {
   Search: undefined;
   Bookings: undefined;
   Profile: undefined;
+  AdminScreen: undefined; 
 };
 
 type PhoneNumberScreenNavigationProp = StackNavigationProp<RootStackParamList, 'PhoneNumber'>;
@@ -18,7 +19,11 @@ const PhoneNumberScreen: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleContinue = () => {
-    navigation.navigate('Profile');
+    if (phoneNumber.trim() === '977') {
+      navigation.navigate('AdminScreen'); // ✅ Go to Admin panel if number is 977
+    } else {
+      navigation.navigate('Profile');
+    }
   };
 
   return (
@@ -47,9 +52,9 @@ const PhoneNumberScreen: React.FC = () => {
               if (item === 'Home') {
                 navigation.navigate('Dashboard');
               } else if (item === 'Search') {
-                navigation.navigate('SearchScreen');
+                navigation.navigate('Search');
               } else if (item === 'Bookings') {
-                navigation.navigate('BookingScreen');
+                navigation.navigate('Bookings');
               } else if (item === 'Profile') {
                 navigation.navigate('PhoneNumber');
               }
